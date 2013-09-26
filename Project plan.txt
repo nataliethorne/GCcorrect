@@ -1,0 +1,63 @@
+############
+# Inputs
+
+#1. genome sequence for chromosome 1 (download from web this is reference sequence)
+#2. read counts at positions xi along chromosome 1  (simulate this)
+#3. positions xi along chromosome 1
+#4. window size w (where [xi:xi+w] is the range for calculating GC content at position xi)
+#5. bin size b (where bins are non-overlapping regions across chromosome 1 for correcting GC)
+#6. function describing an assumed relationship between read counts vs GC content in windows to predict read count for given GC content
+
+
+###########
+# Output
+
+#1. bins positions as a range
+#2. observed counts per bin 
+#3. predicted counts per bin
+#4. corrected counts per bin
+
+
+##########
+# Steps to divide up between us
+
+#1.  Download reference sequence for chromosome 1 (Done!)
+#2.  Create a read count file including positions for each read count (positions are in chromosome 1) [DP]
+#	 two columns (tab delimited) with header "Position"  "Count"
+
+#3.  Create the function describing GC bias (GC increments from 0:1 in steps of 0.01) This will be a tab delimited file with header "GC" and "PredictedCount"  [IL]
+#4.   Makefile  [NT]
+#5.   Readlines()
+#6.   get_position_GC()
+#7.   get_predicted_position_count()
+#8.   correct_bin_count()  # including summarising predicted_bin_count
+#9.   write_bin_statistics()
+#10.   tests()
+#11.   GitHub repository() [NT]
+#12.  README file [IL] 
+#13.  main python script (gc_correct.py), with looping etc.
+
+########
+# Outline of python script  gc_correct.py
+
+# initiate bin_position counter (i.e. where we are in a bin)
+# initiate chr_postion in chromosome 
+# read lines till end of window for current position xi (readLines(), get enough lines from chr1.fa to get GC for the current position)
+# get GC for that position (get_GC())
+# then get predicted count for that position 
+# store prediction in temporary vector 
+# if bin_position==b (yes, bin_position=0 and output bin statistics, no increment bin_position)
+# increment to chr_position
+
+##################
+# Makefile
+#1.  input chr*.fa
+#2. python script
+
+#########
+# Tests
+#4. have we reached the end of the bin
+    have we got the prediction for each position in the bin
+	 
+
+
