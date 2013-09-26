@@ -36,7 +36,7 @@
 #10.   tests()
 #11.   GitHub repository() [NT]
 #12.  README file [IL] -> [NT] 
-#13.  main python script (gc_correct.py), with looping etc. [IL]
+#13.  main python script (gc_correct.py), with looping etc. [IL] # bin_statistics_chr1.txt needs to be opened in main and closed, chr needs to be defined in main also
 
 
 
@@ -45,8 +45,11 @@
 	corrected_bin_count=observed_bin_count/predicted_bin_count
 	write_bin_statistics(bin_position, corrected_bin_count, observed_bin_count, predicted_bin_count)
 
-# def write_bin_statistics(bin_position, corrected_bin_count, observed_bin_count, predicted_bin_count, chr)
+
+
+# def write_bin_statistics(bin_position_start, bin_position_end, corrected_bin_count, observed_bin_count, predicted_bin_count, chr)
 	# let chr be an integer
+	# this writes one line at a time
 	# write to a file bin_statistics_"chr",chr.txt
 
 
