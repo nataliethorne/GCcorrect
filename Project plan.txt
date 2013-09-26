@@ -34,8 +34,8 @@
 #9.   write_bin_statistics()
 #10.   tests()
 #11.   GitHub repository() [NT]
-#12.  README file [IL] 
-#13.  main python script (gc_correct.py), with looping etc.
+#12.  README file [IL] -> [NT] 
+#13.  main python script (gc_correct.py), with looping etc. [IL]
 
 ########
 # Outline of python script  gc_correct.py
