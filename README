@@ -1,1 +1,9 @@
-The GCcorrect is tool to normalize a library of aligned genome sequencing reads for local genome sequence GC bias.
+GCcorrect is tool to normalize a library of aligned genome sequencing reads for local genome sequence GC bias.
+
+The program takes as input the reference sequence of a chromosome in fasta format i.e. chr1.fa
+
+We also assume that we have previously aligned reads to this chromosome and therefore have the read counts per position in this chromosome.  
+
+These observed read counts per position are stored in a tab delimited text file called counts_per_position_chr1.txt, where the header assumed is 
+ 
+

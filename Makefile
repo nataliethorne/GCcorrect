@@ -19,7 +19,7 @@ all: $(patsubst %.fa, bin_statistics_%.txt, $(wildcard *.fasta))
 # Example useage:
 # make clean
 # make chr1.fa B=700 W=180
-# DOES it need to be make chr1.fa counts_per_position_%.txt  gc_precition_%.txt ????
+# DOES it need to be make chr1.fa counts_per_position_%.txt  gc_per_position_%.txt ????
 
 
 # Default values for B and W
@@ -31,7 +31,7 @@ clean:
 	rm -f bin_statistics_*  
 
 
-bin_statistics_$B_$W_%.txt: %.fa counts_per_position_%.txt gc_prediction_%.txt
+bin_statistics_$(B)_$(W)_%.txt: %.fa counts_per_position_%.txt gc_prediction_%.txt
 	python gc_correct.py $^ $B $W $@
 
 
