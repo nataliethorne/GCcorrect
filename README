@@ -1,9 +1,23 @@
-GCcorrect is tool to normalize a library of aligned genome sequencing reads for local genome sequence GC bias.
+GCcorrect is tool to normalize a library of aligned genome sequencing reads for local genome sequence GC bias.  For now we will only do this correction on the positive strand only.  The correction will be performed on one chromosome at a time.
 
 The program takes as input the reference sequence of a chromosome in fasta format i.e. chr1.fa
 
 We also assume that we have previously aligned reads to this chromosome and therefore have the read counts per position in this chromosome.  
 
-These observed read counts per position are stored in a tab delimited text file called counts_per_position_chr1.txt, where the header assumed is 
+These observed read counts per position are stored in a tab delimited text file called counts_per_position_chr1.txt, where the header assumed is "Position" and "Count".  Rows correspond to different positions.
  
+We assume a GC bias that we want to use to correct our read counts.  This GC bias is stored as a tab delimited text file with header "GC" and "PredictedCount" where GC values (rows) range from 0 to 1 in steps of 0.01.
+
+The main programming problem we want to overcome is not to have to read in the entire chr1.fa file from the beginning.  We only want to read in enough lines of the .fa file to estimate the GC values for the current position.  
+
+For each position we will calculate the GC value in the window starting from that position and going in the forward direction the length of window.  The GC in this window will be the GC value corresponding to that position (where the window starts).
+
+As we move positions along the genome, we will keep track of where we are in the current bin.  When the position in the bin counter is equal to the bin size we start a new bin.
+
+At anytime, if get_position_GC needs more sequence to be read, it will read in an additional line and check that whether the end of any current lines of loaded sequence are less that the current position.  If so we don't need to hold that past line in memory.
+
+The GC values will be stored in a temporary object.  When the bin_position_counter is equal to be, we use the temporary object of bin gc values to estimated the predicted_bin_gc (average of predicted_position_counts values in the bin), the observed_bin_counts (average of position_counts in the bin) and calculate the corrected bin counts using correct_bin_count.py, followed by write_bin_statistics.py to write another line to bin_statistics_$B_$W_chr1.txt
+
+
+
 
